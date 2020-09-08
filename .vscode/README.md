@@ -4,7 +4,7 @@ Example configurations for debugging programs in-editor with VS Code.
 This directory contains configurations for two platforms:
 
  - `LM3S6965EVB` on QEMU
- - `STM32F303x` via OpenOCD
+ - `STM32F746ZG` via OpenOCD
 
 ## Required Extensions
 
@@ -30,7 +30,7 @@ Both are configured to build the project, using the default settings from `.carg
    - Semihosting output will be written to the Output view `Adapter Output`.
    - `ITM` logging does not work with QEMU emulation.
 
-2. OpenOCD: Starts a debug session for a `STM32F3DISCOVERY` board (or any `STM32F303x` running at 8MHz).
+2. OpenOCD: Starts a debug session for a `NUCLEO-F746ZG` board.
    - Follow the instructions above for configuring the build with `.cargo/config` and the `memory.x` linker script.
    - `ITM` output will be written to the Output view `SWO: ITM [port: 0, type: console]` output.
 
@@ -55,7 +55,7 @@ Some configurations use this to automatically find the SVD file.
 Replace this with the part number for your device.
 
 ```json
-"device": "STM32F303VCT6",
+"device": "STM32F746ZG",
 ```
 
 ### OpenOCD Config Files
@@ -79,31 +79,38 @@ Cortex-Debug needs this file to display the current register values for the peri
 You can probably find the SVD for your device on the vendor's website.  
 
 
-For example, the STM32F3DISCOVERY board uses an mcu from the `STM32F303x` line of processors.  
-All the SVD files for the STM32F3 series are available on [ST's Website][stm32f3].  
-Download the [stm32f3 SVD pack][stm32f3-svd], and copy the `STM32F303.svd` file into `.vscode/`.  
+For example, the NUCLEO-F746ZG board uses an mcu from the `STM32F746xx` line of processors.
+All the SVD files for the STM32F7 series are available on [ST's Website][stm32f7].
+Download the [stm32f7 SVD pack][stm32f7-svd], and copy the `STM32F746.svd` file into `.vscode/`.
 This line of the config tells the Cortex-Debug plug in where to find the file.
 
 ```json
-"svdFile": "${workspaceRoot}/.vscode/STM32F303.svd",
+"svdFile": "${workspaceRoot}/.vscode/STM32F746.svd",
 ```
 
 For other processors, simply copy the correct `*.svd` file into the project and update the config accordingly.
 
 ### CPU Frequency
 
-If your device is running at a frequency other than 8MHz, you'll need to modify this line of `launch.json` for the `ITM` output to work correctly.
+If your device is running at a frequency other than 216MHz, you'll need to modify this line of `launch.json` for the `ITM` output to work correctly.
 
 ```json
-"cpuFrequency": 8000000,
+"cpuFrequency": 216000000,
 ```
 
 ### Other GDB Servers
 
 For information on setting up GDB servers other than OpenOCD, see the [Cortex-Debug repository][cortex-debug].
 
+```
+OpenOCD GDB executable "arm-none-eabi-gdb" was not found.
+Please configure "cortex-debug.armToolchainPath" correctly.
+$ cd /usr/bin
+$ sudo ln -s arm-none-eabi-gdb gdb-multiarch
+```
+
 [cortex-debug]: https://github.com/Marus/cortex-debug
-[stm32f3]: https://www.st.com/content/st_com/en/products/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus/stm32-mainstream-mcus/stm32f3-series.html#resource
-[stm32f3-svd]: https://www.st.com/resource/en/svd/stm32f3_svd.zip
+[stm32f7]: https://www.st.com/en/microcontrollers-microprocessors/stm32f7-series.html#resource
+[stm32f7-svd]: https://www.st.com/resource/en/svd/stm32f7_svd.zip
 [openocd-config]: http://openocd.org/doc/html/Config-File-Guidelines.html
 [openocd-repo]: https://sourceforge.net/p/openocd/code/ci/master/tree/tcl/
