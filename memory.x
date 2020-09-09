@@ -5,6 +5,7 @@ MEMORY
   /* Flash 1M bytes on AXIM interface */
   FLASH : ORIGIN = 0x08000000, LENGTH = 1M
   /* System SRAM 320K = DTCM(64K) + SRAM1(240K) + SRAM2(16K) */
+  /* should use DTCM? */
   RAM : ORIGIN = 0x20000000, LENGTH = 320K
 }
 
