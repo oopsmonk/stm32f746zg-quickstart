@@ -6,16 +6,16 @@ use cortex_m_rt::entry;
 // pick a panicking behavior
 use panic_halt as _; // you can put a breakpoint on `rust_begin_unwind` to catch panics
 use stm32f7::stm32f7x6::Peripherals;
+use cortex_m_semihosting::hprintln; // text on openODC console
 
 // use panic_abort as _; // requires nightly
 // use panic_itm as _; // logs messages over ITM; requires ITM support
 // use panic_semihosting as _; // logs messages to the host stderr; requires a debugger
-// use cortex_m_semihosting::hprintln; // for openODC debug
 
 #[entry]
 fn main() -> ! {
-    // print text on openOCD terminal
-    // hprintln!("Hello, world!").unwrap();
+    // print text on openODC console
+    hprintln!("Hello, world!").unwrap();
 
     // get he hardware handler
     let peripherals = Peripherals::take().unwrap();
