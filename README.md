@@ -184,6 +184,8 @@ xPSR: 0x01000000 pc: 0x08000400 msp: 0x20050000, semihosting
 Hello, world!
 ```
 
+![](https://i.imgur.com/5HC9gzy.gif)
+
 ## VS Code
 
 This template includes launch configurations for debugging CortexM programs with Visual Studio Code located in the `.vscode/` directory.  
