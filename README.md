@@ -1,6 +1,6 @@
 # `stm32f746zg-quickstart`
 
-> A template for building applications for NUCLEO-F746ZG(STM32F746ZG)
+> A template for building rust applications on NUCLEO-F746ZG(STM32F746ZG)
 
 This project is created for NUCLEO-F746ZG dev board based on [cortex-m-quickstart](https://github.com/rust-embedded/cortex-m-quickstart). It shows `Hello, world!` on openOCD console and blinks user LEDs on the target board.
 
