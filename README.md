@@ -2,7 +2,7 @@
 
 > A template for building applications for NUCLEO-F746ZG(STM32F746ZG)
 
-This project is based on [cortex-m-quickstart](https://github.com/rust-embedded/cortex-m-quickstart).  
+This project is created for NUCLEO-F746ZG dev board based on [cortex-m-quickstart](https://github.com/rust-embedded/cortex-m-quickstart). It shows `Hello, world!` on openOCD console and blinks user LEDs on the target board.
 
 The STM32 **NUCLEO-F746ZG** board is a low-cost and easy-to-use development kit, used to evaluate and start a development quickly with an STM32 microcontroller in LQFP144 package. it does not require any separate probe as it integrates the ST-LINK/V2-1 debugger/programmer.
 
@@ -34,6 +34,13 @@ Hardware:
 
 ## Dependencies
 
+**NOTE**: This is the very short version that only covers building programs. For
+the long version, which additionally covers flashing, running and debugging
+programs, check [the embedded Rust book][book] and [Rust STM32F3Discovery][discovery].
+
+[book]: https://rust-embedded.github.io/book
+[discovery]: https://docs.rust-embedded.org/discovery
+
 To build embedded programs using this template you'll need:
 
 - OpenOCD and ARM GDB. Run:
@@ -56,12 +63,6 @@ $ rustup target add thumbv7em-none-eabihf
 ```
 
 ## Using this template
-
-**NOTE**: This is the very short version that only covers building programs. For
-the long version, which additionally covers flashing, running and debugging
-programs, check [the embedded Rust book][book].
-
-[book]: https://rust-embedded.github.io/book
 
 1. Instantiate the template.
 
